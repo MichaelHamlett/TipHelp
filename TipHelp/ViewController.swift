@@ -32,6 +32,18 @@ class ViewController: UIViewController {
         view.endEditing(true)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("view will appear")
+        
+        let defaults = UserDefaults.standard
+        let tipValue = defaults.integer(forKey: "default_tip_percentage")
+        tipControl.selectedSegmentIndex = tipValue
+        self.calculateTip(0)
+        
+        
+    }
+    
     @IBAction func calculateTip(_ sender: Any) {
         
         let tipPercentages = [0.18, 0.2, 0.25]
@@ -43,6 +55,8 @@ class ViewController: UIViewController {
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", total)
     }
+    
+    
     
     
     
